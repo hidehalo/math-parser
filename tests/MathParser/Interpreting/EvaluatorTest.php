@@ -1,19 +1,19 @@
 <?php
 
+use MathParser\StdMathParser;
+use PHPUnit\Framework\TestCase;
+use MathParser\RationalMathParser;
+use MathParser\Interpreting\Evaluator;
+use MathParser\Parsing\Nodes\NumberNode;
+use MathParser\Parsing\Nodes\ConstantNode;
+use MathParser\Parsing\Nodes\FunctionNode;
+use MathParser\Parsing\Nodes\VariableNode;
+use MathParser\Parsing\Nodes\ExpressionNode;
 use MathParser\Exceptions\DivisionByZeroException;
 use MathParser\Exceptions\UnknownConstantException;
 use MathParser\Exceptions\UnknownFunctionException;
 use MathParser\Exceptions\UnknownOperatorException;
 use MathParser\Exceptions\UnknownVariableException;
-use MathParser\Interpreting\Evaluator;
-use MathParser\Parsing\Nodes\ConstantNode;
-use MathParser\Parsing\Nodes\ExpressionNode;
-use MathParser\Parsing\Nodes\FunctionNode;
-use MathParser\Parsing\Nodes\NumberNode;
-use MathParser\Parsing\Nodes\VariableNode;
-use MathParser\RationalMathParser;
-use MathParser\StdMathParser;
-use PHPUnit\Framework\TestCase;
 
 class EvaluatorTest extends TestCase
 {
@@ -378,4 +378,8 @@ class EvaluatorTest extends TestCase
         $this->assertResult('round(2*2.3)', 5);
     }
 
+    public function testIfFunction()
+    {
+        $this->assertResult('y>x', true);
+    }
 }

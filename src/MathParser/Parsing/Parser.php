@@ -17,23 +17,23 @@ namespace MathParser\Parsing;
 
 use MathParser\Lexing\Token;
 use MathParser\Lexing\TokenType;
-use MathParser\Lexing\TokenPrecedence;
-use MathParser\Lexing\TokenAssociativity;
-
 use MathParser\Parsing\Nodes\Node;
-use MathParser\Parsing\Nodes\ExpressionNode;
+use MathParser\Lexing\TokenPrecedence;
+
 use MathParser\Parsing\Nodes\NumberNode;
+use MathParser\Lexing\TokenAssociativity;
+use MathParser\Parsing\Nodes\IntegerNode;
+use MathParser\Interpreting\PrettyPrinter;
 use MathParser\Parsing\Nodes\FunctionNode;
+use MathParser\Parsing\Nodes\RationalNode;
+use MathParser\Parsing\Nodes\ExpressionNode;
+use MathParser\Exceptions\SyntaxErrorException;
 use MathParser\Parsing\Nodes\SubExpressionNode;
+
 use MathParser\Parsing\Nodes\PostfixOperatorNode;
 use MathParser\Parsing\Nodes\Factories\NodeFactory;
-use MathParser\Parsing\Nodes\IntegerNode;
-use MathParser\Parsing\Nodes\RationalNode;
 
-use MathParser\Exceptions\SyntaxErrorException;
 use MathParser\Exceptions\ParenthesisMismatchException;
-
-use MathParser\Interpreting\PrettyPrinter;
 
 /**
 * Mathematical expression parser, based on the shunting yard algorithm.
@@ -115,6 +115,8 @@ class Parser
         }
 
         $this->tokens = $tokens;
+        var_dump($this->tokens);
+        die;
 
         // Perform the actual parsing
         return $this->shuntingYard($tokens);
@@ -340,6 +342,8 @@ class Parser
         $lastToken = null;
         foreach ($tokens as $token) {
             if (Token::canFactorsInImplicitMultiplication($lastToken, $token)) {
+                var_dump($lastToken, $token);
+                die;
                 $result[] = new Token('*', TokenType::MultiplicationOperator);
             }
             $lastToken = $token;
