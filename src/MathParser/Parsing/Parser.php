@@ -115,8 +115,6 @@ class Parser
         }
 
         $this->tokens = $tokens;
-        var_dump($this->tokens);
-        die;
 
         // Perform the actual parsing
         return $this->shuntingYard($tokens);
@@ -342,8 +340,6 @@ class Parser
         $lastToken = null;
         foreach ($tokens as $token) {
             if (Token::canFactorsInImplicitMultiplication($lastToken, $token)) {
-                var_dump($lastToken, $token);
-                die;
                 $result[] = new Token('*', TokenType::MultiplicationOperator);
             }
             $lastToken = $token;

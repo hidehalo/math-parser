@@ -80,4 +80,8 @@ final class TokenType
 
     /** Token representing a senitinel, for internal used in the Parser. Not used. */
     const Sentinel = 1000;
+
+    const IF = 2000;
+
+    const GT = 3000;
 }

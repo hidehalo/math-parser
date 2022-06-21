@@ -135,10 +135,10 @@ class StdMathLexer extends Lexer
         $this->add(new TokenDefinition('/\n/', TokenType::Terminator));
         $this->add(new TokenDefinition('/\s+/', TokenType::Whitespace));
 
-        $this->add(new TokenDefinition('/if/', TokenType::FunctionName), 'if');
+        $this->add(new TokenDefinition('/if/', TokenType::IF), 'if');
 
-        $this->add(new TokenDefinition('/>/', TokenType::FunctionName), '>');
-        $this->add(new TokenDefinition('/>=/', TokenType::FunctionName), '>=');
+        $this->add(new TokenDefinition('/>/', TokenType::GT), '>');
+        $this->add(new TokenDefinition('/>=/', TokenType::GT), '>=');
 
 
     }
