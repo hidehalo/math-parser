@@ -135,7 +135,9 @@ class StdMathLexer extends Lexer
         $this->add(new TokenDefinition('/\n/', TokenType::Terminator));
         $this->add(new TokenDefinition('/\s+/', TokenType::Whitespace));
 
-        $this->add(new TokenDefinition('/if/', TokenType::IF), 'if');
+        // NOTE: it's very hard to support `if` evaluation upon this framework
+        // $this->add(new TokenDefinition('/if/', TokenType::FunctionName), 'if');
+
 
         $this->add(new TokenDefinition('/>/', TokenType::GreaterThan), '>');
         
