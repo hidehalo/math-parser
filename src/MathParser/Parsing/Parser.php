@@ -34,6 +34,7 @@ use MathParser\Parsing\Nodes\PostfixOperatorNode;
 use MathParser\Parsing\Nodes\Factories\NodeFactory;
 
 use MathParser\Exceptions\ParenthesisMismatchException;
+use Symfony\Component\Translation\Dumper\DumperInterface;
 
 /**
 * Mathematical expression parser, based on the shunting yard algorithm.
@@ -115,7 +116,7 @@ class Parser
         }
 
         $this->tokens = $tokens;
-
+        var_dump($tokens);
         // Perform the actual parsing
         return $this->shuntingYard($tokens);
     }
@@ -153,7 +154,6 @@ class Parser
             } else {
                 $node = Node::factory($token);
             }
-
             // Handle closing parentheses
             if ($token->getType() == TokenType::CloseParenthesis) {
                 $this->handleSubExpression();
@@ -201,7 +201,6 @@ class Parser
                         $this->operandStack->push($popped);
                     }
                 }
-
                 if ($node) $this->operatorStack->push($node);
             }
 

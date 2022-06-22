@@ -66,6 +66,10 @@ final class TokenType
     const FactorialOperator = 105;
     /** Token representing postfix subfactorial operator '!!' */
     const SemiFactorialOperator = 105;
+    // >
+    const GreaterThan = 106;
+    // >=
+    const GreaterEqualThan = 107;
 
     /** Token represented a function name, e.g. 'sin' */
     const FunctionName = 200;

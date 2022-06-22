@@ -14,11 +14,11 @@
  */
 namespace MathParser\Parsing\Nodes;
 
-use MathParser\Interpreting\ASCIIPrinter;
-use MathParser\Interpreting\Evaluator;
-use MathParser\Interpreting\Visitors\Visitable;
 use MathParser\Lexing\Token;
 use MathParser\Lexing\TokenType;
+use MathParser\Interpreting\Evaluator;
+use MathParser\Interpreting\ASCIIPrinter;
+use MathParser\Interpreting\Visitors\Visitable;
 
 /**
  * Abstract base class for nodes in the abstract syntax tree
@@ -68,6 +68,8 @@ abstract class Node implements Visitable
             case TokenType::MultiplicationOperator:
             case TokenType::DivisionOperator:
             case TokenType::ExponentiationOperator:
+            case TokenType::GreaterThan:
+            case TokenType::GreaterEqualThan:
                 return new ExpressionNode(null, $token->getValue(), null);
 
             case TokenType::FactorialOperator:
@@ -116,6 +118,8 @@ abstract class Node implements Visitable
             case TokenType::MultiplicationOperator:
             case TokenType::DivisionOperator:
             case TokenType::ExponentiationOperator:
+            case TokenType::GreaterThan:
+            case TokenType::GreaterEqualThan:
                 return new ExpressionNode(null, $token->getValue(), null);
 
             case TokenType::FactorialOperator:

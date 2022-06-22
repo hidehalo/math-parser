@@ -137,9 +137,8 @@ class StdMathLexer extends Lexer
 
         $this->add(new TokenDefinition('/if/', TokenType::IF), 'if');
 
-        $this->add(new TokenDefinition('/>/', TokenType::GT), '>');
-        $this->add(new TokenDefinition('/>=/', TokenType::GT), '>=');
-
-
+        $this->add(new TokenDefinition('/>/', TokenType::GreaterThan), '>');
+        
+        $this->add(new TokenDefinition('/>=/', TokenType::GreaterEqualThan), '>=');
     }
 }

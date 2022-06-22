@@ -15,8 +15,8 @@
  */
 namespace MathParser\Parsing\Nodes\Factories;
 
-use MathParser\Parsing\Nodes\Factories\UnaryMinusNodeFactory;
 use MathParser\Parsing\Nodes\ExpressionNode;
+use MathParser\Parsing\Nodes\Factories\UnaryMinusNodeFactory;
 
 /**
  * Helper class for creating ExpressionNodes.
@@ -173,6 +173,8 @@ class NodeFactory {
             case '*': return $this->multiplication($node->getLeft(), $node->getRight());
             case '/': return $this->division($node->getLeft(), $node->getRight());
             case '^': return $this->exponentiation($node->getLeft(), $node->getRight());
+            case '>': return new ExpressionNode($node->getLeft(), '>', $node->getRight());
+            case '>=': return new ExpressionNode($node->getLeft(), '>=', $node->getRight());
         }
     }
 

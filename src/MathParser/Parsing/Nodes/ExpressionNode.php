@@ -10,9 +10,9 @@
 namespace MathParser\Parsing\Nodes;
 
 use MathParser\Interpreting\Visitors\Visitor;
-use MathParser\Exceptions\UnknownOperatorException;
-
 use MathParser\Parsing\Nodes\Traits\Sanitize;
+
+use MathParser\Exceptions\UnknownOperatorException;
 
 /**
  * AST node representing a binary operator
@@ -64,7 +64,6 @@ class ExpressionNode extends Node
         $this->left = $this->sanitize($left);
         $this->operator = $operator;
         $this->right = $this->sanitize($right);
-
         switch($operator) {
             case '+':
                 $this->precedence = 10;
@@ -95,7 +94,11 @@ class ExpressionNode extends Node
                 $this->precedence = 30;
                 $this->associativity = self::RIGHT_ASSOC;
                 break;
-
+            case '>':
+            case '>=':
+                $this->precedence = 5;
+                $this->associativity = self::LEFT_ASSOC;
+                break;
             default:
                 throw new UnknownOperatorException($operator);
         }
