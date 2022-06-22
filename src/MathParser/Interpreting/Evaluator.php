@@ -7,21 +7,21 @@
 
 namespace MathParser\Interpreting;
 
+use MathParser\Extensions\Math;
+use MathParser\Lexer\StdMathLexer;
+use MathParser\Parsing\Nodes\NumberNode;
+use MathParser\Parsing\Nodes\IntegerNode;
+use MathParser\Parsing\Nodes\ConstantNode;
+use MathParser\Parsing\Nodes\FunctionNode;
+use MathParser\Parsing\Nodes\RationalNode;
+use MathParser\Parsing\Nodes\VariableNode;
+use MathParser\Parsing\Nodes\ExpressionNode;
+use MathParser\Interpreting\Visitors\Visitor;
 use MathParser\Exceptions\DivisionByZeroException;
 use MathParser\Exceptions\UnknownConstantException;
 use MathParser\Exceptions\UnknownFunctionException;
 use MathParser\Exceptions\UnknownOperatorException;
 use MathParser\Exceptions\UnknownVariableException;
-use MathParser\Extensions\Math;
-use MathParser\Interpreting\Visitors\Visitor;
-use MathParser\Lexer\StdMathLexer;
-use MathParser\Parsing\Nodes\ConstantNode;
-use MathParser\Parsing\Nodes\ExpressionNode;
-use MathParser\Parsing\Nodes\FunctionNode;
-use MathParser\Parsing\Nodes\IntegerNode;
-use MathParser\Parsing\Nodes\NumberNode;
-use MathParser\Parsing\Nodes\RationalNode;
-use MathParser\Parsing\Nodes\VariableNode;
 
 /**
  * Evalutate a parsed mathematical expression.
@@ -122,7 +122,10 @@ class Evaluator implements Visitor
                 } else {
                     return pow($leftValue, $rightValue);
                 }
-
+            case '>':
+                return $leftValue > $rightValue;
+            case '>=':
+                return $leftValue >= $rightValue;
             default:
                 throw new UnknownOperatorException($operator);
         }
